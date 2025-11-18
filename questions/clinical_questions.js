@@ -827,4 +827,318 @@ window.clinicalData = {
         type: "mcq", 
         options: ["Bend at the waist.", "Keep knees straight.", "Bend knees instead of the back.", "Use only arm muscles."], 
         a: 2, 
-        hint: "الانحناء من الركبتين (القرفصاء) 
+        hint: "الانحناء من الركبتين (القرفصاء) يستخدم عضلات الفخذين الكبيرة.",
+        explanation: "ثني الركبتين (Squatting) ينقل الحمل إلى عضلات الفخذ القوية بدلاً من عضلات الظهر الضعيفة نسبياً."
+      },
+      { 
+        q: "Maximum stability is achieved when the line of gravity:", 
+        type: "mcq", 
+        options: ["Falls outside the base of support.", "Is as close as possible to the center of the base of support.", "Is as close as possible to the edge of the base of support.", "Is not considered."], 
+        a: 1, 
+        hint: "لتحقيق التوازن، يجب أن يكون خط الجاذبية في 'وسط' قاعدة الدعم.",
+        explanation: "كلما كان خط الجاذبية أقرب لمركز قاعدة الدعم (المساحة بين القدمين)، كان الجسم أكثر استقراراً."
+      },
+      { 
+        q: "The technique used to turn the body in a way that avoids twisting of the spine is called:", 
+        type: "mcq", 
+        options: ["Logrolling.", "Dangling.", "Pivoting.", "Flexing."], 
+        a: 0, 
+        hint: "'لف الجذع' (Logrolling) يحرك الجسم كوحدة واحدة (مثل جذع شجرة).",
+        explanation: "Logrolling هي التقنية الوحيدة التي تضمن دوران العمود الفقري كقطعة واحدة دون التواء، وتستخدم لإصابات الظهر."
+      },
+      { 
+        q: "The maximum weight a nurse should lift without assistance from proper equipment or other individuals is:", 
+        type: "mcq", 
+        options: ["50 pounds (22.7 kg).", "35 pounds (15.9 kg).", "45 pounds (20.4 kg).", "25 pounds (11.3 kg)."], 
+        a: 1, 
+        hint: "توصي (NIOSH) بهذا الحد (35 رطلاً) لتقليل إصابات الظهر.",
+        explanation: "المعهد الوطني للسلامة (NIOSH) يوصي بألا يتجاوز الوزن الذي يرفعه الموظف منفرداً 35 رطلاً."
+      },
+      { 
+        q: "Which action should be used when lifting an object from the ground to utilize hip and leg muscles?", 
+        type: "mcq", 
+        options: ["Stoop down and keep knees straight.", "Flex knees and stoop down, keeping the back straight.", "Round the back to increase leverage.", "Twist and lift simultaneously."], 
+        a: 1, 
+        hint: "القرفصاء (ثني الركبتين) مع استقامة الظهر هي الطريقة الصحيحة.",
+        explanation: "النزول بالركبتين مع إبقاء الظهر مستقيماً يسمح باستخدام عضلات الفخذ للرفع ويحمي الظهر."
+      },
+      { 
+        q: "When working with a team to lift or move a client, what is essential for coordination?", 
+        type: "mcq", 
+        options: ["Everyone lifts at their own pace.", "A team leader and a signal (e.g., 'count 1, 2, 3 and lift').", "Using only the arms to lift.", "Avoiding eye contact to maintain focus."], 
+        a: 1, 
+        hint: "العد (1، 2، 3) يضمن أن الجميع يرفعون في نفس اللحظة.",
+        explanation: "وجود قائد للفريق وإشارة موحدة (العد) يضمن تزامن الحركة، مما يوزع الوزن بالتساوي ويمنع الإصابات."
+      },
+      { 
+        q: "Why is it recommended to push, pull, or slide an object instead of lifting it?", 
+        type: "mcq", 
+        options: ["Lifting is against the line of gravity and requires more force.", "Pushing and pulling build more muscle.", "Sliding an object is always faster.", "Lifting is prohibited in all situations."], 
+        a: 0, 
+        hint: "الرفع يتطلب التغلب على الجاذبية بالكامل، وهو ما يستهلك أكبر قدر من القوة.",
+        explanation: "الدفع أو السحب يتطلب طاقة أقل بكثير من الرفع لأنك لا تضطر لمقاومة الجاذبية الكاملة لوزن الجسم."
+      },
+      { 
+        q: "Which piece of equipment is designed to help move a client with minimal friction?", 
+        type: "mcq", 
+        options: ["Mobile-powered mechanical lift.", "Sit-to-stand powered lift.", "Friction-reducing device.", "Ceiling-mounted lift."], 
+        a: 2, 
+        hint: "مثل الـ 'Slide sheet' (ملاءة الانزلاق)، هي مصممة لـ 'تقليل الاحتكاك'.",
+        explanation: "أجهزة تقليل الاحتكاك (مثل Slide sheets) تجعل المريض ينزلق بسهولة، مما يقلل الجهد المطلوب للتحريك."
+      },
+      { 
+        q: "An Air Transfer System is recommended for a client weighing more than 300 pounds (136.1 kg) with how many assistants?", 
+        type: "mcq", 
+        options: ["One assistant.", "Two assistants.", "Four assistants.", "Six assistants."], 
+        a: 1, 
+        hint: "نظام النقل الهوائي (المرتبة الهوائية) يقلل الاحتكاك بشكل كبير.",
+        explanation: "لأن النظام الهوائي يقلل الاحتكاك بشكل هائل (كأن المريض يطفو)، يكفي مساعدان فقط حتى للأوزان الثقيلة جداً."
+      },
+      { 
+        q: "A client weighing between 201-300 pounds (91.2- 136.1 kg) who is partially able to assist should be moved up in bed using:", 
+        type: "mcq", 
+        options: ["A friction-reducing device and two assistants.", "A friction-reducing slide sheet and four assistants OR an air transfer system and two assistants.", "Manual lifting by two nurses.", "A total transfer lift only."], 
+        a: 1, 
+        hint: "الوزن العالي يتطلب المزيد من الدعم أو تقنية أفضل (مثل الهواء).",
+        explanation: "للأوزان المتوسطة إلى الثقيلة، نحتاج إما لـ 4 مساعدين مع ملاءة انزلاق، أو مساعدين اثنين مع نظام هوائي."
+      },
+      { 
+        q: "Before moving a client up in bed, why is a pillow placed against the head of the bed?", 
+        type: "mcq", 
+        options: ["To make the client more comfortable.", "To protect the client's head from injury against the top of the bed.", "To maintain the Fowler's position.", "To help the nurse pull the client."], 
+        a: 1, 
+        hint: "لمنع اصطدام رأس المريض بلوح السرير العلوي.",
+        explanation: "الوسادة تعمل كمصد (Bumper) لحماية رأس المريض من الارتطام بلوح السرير الصلب أثناء السحب لأعلى."
+      },
+      { 
+        q: "What should be done with the bed wheels before moving a client up in bed?", 
+        type: "mcq", 
+        options: ["Keep them unlocked for easy adjustment.", "Lock them.", "Only lock the wheels nearest the head of the bed.", "Remove them entirely."], 
+        a: 1, 
+        hint: "'قفل' العجلات هو إجراء أمان قياسي لمنع تحرك السرير.",
+        explanation: "قفل العجلات يمنع السرير من التحرك أثناء بذل الجهد، مما يحمي الممرض والمريض من السقوط."
+      },
+      { 
+        q: "When moving a client who is able to reposition without assistance, the nurse should encourage the client to:", 
+        type: "mcq", 
+        options: ["Lift the head and pull up with only the arms.", "Push off with the feet and pull up with the arms simultaneously.", "Keep the body completely flat and still.", "Only push with the feet."], 
+        a: 1, 
+        hint: "استخدام الساقين (الدفع) والذراعين (السحب بالترابيز) هو الطريقة الأكثر فعالية للمريض.",
+        explanation: "دفع السرير بالقدمين وسحب الجسم بالذراعين يسمح للمريض باستخدام عضلاته الكبيرة لتسهيل الحركة."
+      },
+      { 
+        q: "For a client who is partially able to assist and weighs less than 200 pounds, the protocol suggests using:", 
+        type: "mcq", 
+        options: ["A total transfer lift.", "Manual lift by one assistant.", "A friction-reducing device and two assistants.", "A ceiling lift with a supine sling."], 
+        a: 2, 
+        hint: "هذا هو المعيار القياسي للوزن المتوسط مع مساعدة جزئية.",
+        explanation: "حتى مع الوزن الخفيف والمساعدة الجزئية، يُفضل استخدام جهاز لتقليل الاحتكاك ومساعدين لحماية الظهر."
+      }
+    ]
+  },
+
+  clinical_8: {
+    title: "Body Mechanics - Part 2",
+    questions: [
+      { 
+        q: "When moving a client who is unable to assist, the recommended equipment/staff are:", 
+        type: "mcq", 
+        options: ["Friction-reducing slide sheet and four assistants.", "Use the ceiling lift with supine sling or mobile floor-based lift and two or more caregivers.", "Two nurses manually lifting.", "Ask the client to push on the count of three."], 
+        a: 1, 
+        hint: "إذا كان المريض 'غير قادر' على المساعدة، يجب استخدام 'رافعة ميكانيكية' (Lift).",
+        explanation: "الرفع اليدوي لمريض غير قادر على المساعدة ممنوع؛ يجب استخدام رافعة ميكانيكية (Lift) لضمان السلامة."
+      },
+      { 
+        q: "The main purpose of Logrolling is to turn a client while keeping the body:", 
+        type: "mcq", 
+        options: ["Bent at the hips and knees.", "In a completely straight alignment (like a log).", "Flexed laterally.", "Turned in segments."], 
+        a: 1, 
+        hint: "يتم تحريك العمود الفقري كوحدة واحدة لمنع أي التواء.",
+        explanation: "Logrolling (دحرجة الجذع) تهدف للحفاظ على استقامة العمود الفقري تماماً كقطعة واحدة، وهو أمر حيوي لإصابات الظهر."
+      },
+      { 
+        q: "Logrolling is typically used for clients with:", 
+        type: "mcq", 
+        options: ["Diabetes.", "Severe pressure ulcers.", "Back surgery or a spinal injury.", "Respiratory distress."], 
+        a: 2, 
+        hint: "يُستخدم هذا الأسلوب لأي شخص لديه إصابة في 'العمود الفقري'.",
+        explanation: "يُستخدم حصرياً للمرضى الذين خضعوا لجراحة في الظهر أو لديهم إصابات في العمود الفقري لمنع تلف النخاع الشوكي."
+      },
+      { 
+        q: "Before logrolling, the client's arms should be positioned:", 
+        type: "mcq", 
+        options: ["Extended straight above the head.", "Held by the nurses.", "Across the chest.", "Dangling over the side of the bed."], 
+        a: 2, 
+        hint: "وضع الذراعين متقاطعتين على الصدر يمنعهما من الانحشار تحت الجسم.",
+        explanation: "وضع الذراعين على الصدر يبقيهما في مأمن ويمنعهما من الانحشار تحت الجسم أثناء الدوران."
+      },
+      { 
+        q: "During logrolling, the client is first pulled to the side of the bed by how many nurses on the same side?", 
+        type: "mcq", 
+        options: ["One nurse.", "Two nurses.", "Three nurses.", "Four nurses."], 
+        a: 1, 
+        hint: "عادةً ما يتطلب هذا الإجراء 2-3 ممرضين، لكنهم يقفون على 'نفس' الجانب للسحب أولاً.",
+        explanation: "Logrolling يتطلب ممرضين على الأقل (أو ثلاثة) يعملون بتزامن تام للحفاظ على الاستقامة."
+      },
+      { 
+        q: "Why is a pillow placed between the client's legs before logrolling?", 
+        type: "mcq", 
+        options: ["To increase comfort during the move.", "To prevent adduction of the upper leg and keep the legs aligned.", "To help the client push off the bed.", "To prevent the nurse from twisting their back."], 
+        a: 1, 
+        hint: "الوسادة تحافظ على 'استقامة' الحوض والعمود الفقري.",
+        explanation: "الوسادة تمنع الساق العليا من السقوط للأمام (Adduction) مما قد يسبب التواء في العمود الفقري القطني."
+      },
+      { 
+        q: "Dangling is performed primarily to prepare a client for:", 
+        type: "mcq", 
+        options: ["Logrolling.", "Moving to a chair/wheelchair or walking.", "A full bed bath.", "Sleeping."], 
+        a: 1, 
+        hint: "'التدلي' (Dangling) هو جعل المريض يجلس على حافة السرير كخطوة أولى قبل الوقوف.",
+        explanation: "Dangling (الجلوس مع تدلي القدمين) يسمح للدورة الدموية بالتأقلم مع الجاذبية قبل محاولة الوقوف أو المشي."
+      },
+      { 
+        q: "Before assisting a client to a sitting position (dangling), the head of the bed should be raised:", 
+        type: "mcq", 
+        options: ["Slowly to its highest position.", "Only to a 30-degree angle.", "To a flat position.", "Quickly to maximize momentum."], 
+        a: 0, 
+        hint: "رفع رأس السرير (وضع فاولر) يستخدم الجاذبية لمساعدة المريض على الجلوس.",
+        explanation: "رفع رأس السرير لأعلى وضع (High Fowler's) يقلل المسافة التي يحتاجها المريض للنهوض ويقلل الجهد."
+      },
+      { 
+        q: "When preparing for the move, the nurse should stand beside the client's hips and face:", 
+        type: "mcq", 
+        options: ["The client's face.", "The far corner of the bottom of the bed.", "Directly down the length of the bed.", "The wall opposite the bed."], 
+        a: 1, 
+        hint: "التوجه 'قطرياً' نحو الزاوية البعيدة يضع الممرض في الاتجاه الصحيح 'للدوران' (Pivot).",
+        explanation: "الوقوف باتجاه القدمين (الزاوية البعيدة) يسمح للممرض بالدوران (Pivot) بسلاسة لإنزال ساقي المريض."
+      },
+      { 
+        q: "During the move, the nurse places the arm nearest the head of the bed:", 
+        type: "mcq", 
+        options: ["Under the client's knees.", "Under the client's thighs.", "Under the client's shoulders.", "On the client's abdomen."], 
+        a: 2, 
+        hint: "الذراع تذهب تحت الكتفين للدعم، والذراع الأخرى تذهب تحت الفخذين لتدوير الساقين.",
+        explanation: "الذراع تحت الكتفين تدعم الجذع، بينما الذراع الأخرى تحرك الساقين، مما يخلق حركة دوران محورية."
+      },
+      { 
+        q: "The purpose of having the nurse pivot on the balls of their feet in the desired direction is to:", 
+        type: "mcq", 
+        options: ["Increase the client's downward momentum.", "Prevent twisting of the nurse's spine.", "Check the client's balance.", "Signal the completion of the move."], 
+        a: 1, 
+        hint: "'الدوران' (Pivot) بالجسم كله يمنع 'الالتواء' (Twisting) في ظهر الممرض.",
+        explanation: "الدوران بالقدمين (Pivoting) يحرك الجسم بالكامل كوحدة واحدة، مما يمنع إصابات الظهر الناتجة عن الالتواء (Twisting)."
+      },
+      { 
+        q: "After the client is sitting on the side of the bed (dangling), what should the nurse immediately assess, as indicated by the client's health status?", 
+        type: "mcq", 
+        options: ["Skin integrity.", "Level of pain.", "Vital signs (e.g., pulse, respirations, and blood pressure).", "Appetite."], 
+        a: 2, 
+        hint: "يجب التحقق من 'انخفاض ضغط الدم الانتصابي' (Orthostatic hypotension) أو الدوخة قبل محاولة الوقوف.",
+        explanation: "يجب مراقبة العلامات الحيوية لاكتشاف انخفاض ضغط الدم الانتصابي (Orthostatic hypotension) الذي قد يسبب الإغماء."
+      },
+      { 
+        q: "Why is good body mechanics important for the caregiver?", 
+        type: "mcq", 
+        options: ["To avoid skeletal injury and muscle strain or tears.", "To speed up the transfer process.", "To use smaller, easily fatigued muscles.", "To force against the line of gravity."], 
+        a: 0, 
+        hint: "الهدف الأول هو حماية 'الممرض' من الإصابة.",
+        explanation: "إصابات الظهر والعضلات هي الخطر المهني الأكبر في التمريض، وميكانيكا الجسم الصحيحة هي خط الدفاع الأول."
+      },
+      { 
+        q: "The knowledge of a client's body and how it moves is important because it allows the caregiver to:", 
+        type: "mcq", 
+        options: ["Use minimal staff for all transfers.", "Move the client without causing additional discomfort.", "Avoid using any assistive equipment.", "Skip the assessment phase."], 
+        a: 1, 
+        hint: "فهم المريض يساعد على جعل الحركة آمنة و 'مريحة' له.",
+        explanation: "فهم حدود حركة المريض وميكانيكا جسمه يسمح بتحريكه بطريقة لا تسبب ألماً أو ضرراً إضافياً."
+      },
+      { 
+        q: "Before performing any procedure, the first two steps listed in all techniques are to:", 
+        type: "mcq", 
+        options: ["Perform hand hygiene and provide for client privacy.", "Introduce self, verify client identity, and explain the procedure.", "Document vital signs and adjust the bed height.", "Roll the client to the side of the bed."], 
+        a: 1, 
+        hint: "هذه هي الخطوات القياسية للسلامة والتواصل قبل لمس المريض.",
+        explanation: "التعريف بالنفس والتحقق من هوية المريض وشرح الإجراء هي أساسيات سلامة المريض وحقوقه."
+      },
+      { 
+        q: "What is an essential piece of information to record after moving or turning a client?", 
+        type: "mcq", 
+        options: ["The nurse's lunch break time.", "The weather outside.", "The ability of the client to assist in moving and turning.", "The agency's policy number."], 
+        a: 2, 
+        hint: "توثيق 'مدى' مساعدة المريض مهم لتقييم حالته ولتخطيط الرعاية المستقبلية.",
+        explanation: "توثيق قدرة المريض على المساعدة (مستقل، مساعدة جزئية، كلي) يساعد الفريق الطبي في تقييم تقدم حالته."
+      },
+      { 
+        q: "When using the friction-reducing slide sheet for a partially assisting client less than 200 pounds, the client is asked to push on the count of:", 
+        type: "mcq", 
+        options: ["Two.", "Three.", "Four.", "Five."], 
+        a: 1, 
+        hint: "العد 'لثلاثة' هو الإشارة القياسية لضمان تزامن الحركة.",
+        explanation: "العد لثلاثة (1-2-3) يضمن أن المريض والممرضين يبذلون الجهد في نفس اللحظة بالضبط."
+      },
+      { 
+        q: "What happens if the line of gravity falls outside the base of support?", 
+        type: "mcq", 
+        options: ["The individual's stability increases.", "The individual falls.", "The center of gravity is lowered.", "The individual is perfectly balanced."], 
+        a: 1, 
+        hint: "للحفاظ على التوازن، يجب أن يكون خط الجاذبية 'داخل' قاعدة الدعم (أي بين القدمين).",
+        explanation: "إذا خرج خط الجاذبية عن قاعدة الدعم، يفقد الجسم توازنه ويسقط."
+      },
+      { 
+        q: "When attempting to lift an object, if necessary, the nurse should:", 
+        type: "mcq", 
+        options: ["Lift it quickly before fatigue sets in.", "Evaluate the weight of the object and get help.", "Always lift it alone to conserve resources.", "Round the back to increase strength."], 
+        a: 2, 
+        hint: "لا تخاطر أبداً. 'قيّم' الوزن أولاً، وإذا كان ثقيلاً، 'اطلب المساعدة'.",
+        explanation: "التقييم قبل الرفع (Assess before lift) هو القاعدة؛ إذا كان الوزن ثقيلاً، يجب طلب المساعدة فوراً."
+      },
+      { 
+        q: "The rationale for raising the bed to the caregiver's elbow height before moving a client up in bed is primarily to:", 
+        type: "mcq", 
+        options: ["Give the client a better view.", "Adjust the client's head.", "Make the work easier for the client.", "Ensure personnel safety and avoid back strain."], 
+        a: 3, 
+        hint: "العمل على ارتفاع 'مناسب' (مستوى المرفق) هو أهم مبادئ ميكانيكا الجسم لحماية الظهر.",
+        explanation: "رفع السرير يمنع الممرض من الانحناء بظهره، مما يحافظ على استقامة العمود الفقري ويمنع الإصابة."
+      }
+    ]
+  },
+
+  clinical_9: {
+    title: "Body Mechanics - Part 3",
+    questions: [
+      { 
+        q: "When preparing to move a client up in bed, the nurse should lock the wheels on the bed and:", 
+        type: "mcq", 
+        options: ["Lower all side rails.", "Raise the rail on the side of the bed opposite the nurse.", "Remove the headboard.", "Lower the bed to its lowest position."], 
+        a: 1, 
+        hint: "هذا إجراء أمان مزدوج: قفل العجلات لمنع الحركة، ورفع الحاجز لمنع السقوط.",
+        explanation: "رفع الحاجز الجانبي المقابل يوفر شبكة أمان تمنع المريض من السقوط من الجانب الآخر أثناء الحركة."
+      },
+      { 
+        q: "When assisting a client to sit on the side of the bed, the weight of the client's legs swinging downward helps to:", 
+        type: "mcq", 
+        options: ["Increase friction on the bed surface.", "Prevent the nurse from pivoting.", "Increase downward movement of the lower body and make the upper body vertical.", "Stabilize the client's blood pressure."], 
+        a: 2, 
+        hint: "تستخدم الجاذبية (ثقل الساقين) للمساعدة في رفع الجزء العلوي من الجسم.",
+        explanation: "حركة الساقين لأسفل تعمل كثقل موازن (Counterweight) يساعد في رفع جذع المريض لأعلى بسهولة."
+      },
+      { 
+        q: "A client with a spinal injury is an example of a client who requires which technique?", 
+        type: "mcq", 
+        options: ["Moving up in bed using a friction-reducing device.", "Dangling.", "Logrolling.", "Independent repositioning."], 
+        a: 2, 
+        hint: "يجب الحفاظ على استقامة العمود الفقري (مثل جذع الشجرة) لهؤلاء المرضى.",
+        explanation: "Logrolling هو التقنية الوحيدة المسموح بها لمرضى إصابات العمود الفقري لمنع تفاقم الإصابة."
+      },
+      { 
+        q: "Why does the text advise using smooth, coordinated motions instead of jerky movements?", 
+        type: "mcq", 
+        options: ["To prevent skin shearing.", "Jerky movements are inefficient and can cause injury.", "Jerky movements make the client fall asleep.", "Coordinated motions require less staff."], 
+        a: 1, 
+        hint: "الحركات 'المفاجئة' أو 'غير المتوقعة' تستهلك طاقة أكبر وتزيد من خطر إصابة الممرض والمريض.",
+        explanation: "الحركات السلسة (Smooth) تحافظ على الزخم وتمنع الشد العضلي المفاجئ للمريض والممرض."
+      }
+    ]
+  }
+};
+console.log("Clinical file loaded successfully");
