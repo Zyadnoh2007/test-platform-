@@ -2,18 +2,59 @@
 @import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap');
 
 :root {
-  /* (تعديل) لوحة ألوان عصرية وجديدة */
-  --primary-color: #3b82f6; /* Modern Blue */
-  --secondary-color: #6366f1; /* Modern Indigo */
+  /* الألوان الافتراضية (الفاتحة) */
+  --primary-color: #3b82f6;
+  --secondary-color: #6366f1;
   --card-bg: #ffffff;
-  --body-bg: #f8fafc; /* slate-50 (خلفية رمادية فاتحة جداً) */
-  --text-dark: #1e293b; /* slate-800 */
-  --text-light: #64748b; /* slate-500 */
-  --border-color: #e2e8f0; /* slate-200 */
-  --shadow-light: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-heavy: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --radius-md: 12px; /* (تعديل) توحيد قياسات الحواف */
+  --body-bg: #f8fafc; 
+  --text-dark: #1e293b;
+  --text-light: #64748b;
+  --border-color: #e2e8f0;
+  --quiz-card-bg: #eff6ff;
+  --quiz-card-border: #3b82f6;
+  --shadow-light: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-heavy: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  --radius-md: 12px;
   --radius-lg: 16px;
+}
+
+/* --- (جديد) ألوان الوضع الليلي --- */
+body.dark-mode {
+  --card-bg: #1e293b;
+  --body-bg: #0f172a;
+  --text-dark: #f1f5f9;
+  --text-light: #94a3b8;
+  --border-color: #334155;
+  --quiz-card-bg: #1e293b; /* لون كارت السؤال */
+  --quiz-card-border: #6366f1;
+}
+
+/* تعديلات خاصة للوضع الليلي على عناصر محددة */
+body.dark-mode .quiz-card:hover {
+  background-color: #334155;
+}
+body.dark-mode .answer-btn {
+  background-color: #1e293b;
+  color: #f1f5f9;
+}
+body.dark-mode .answer-btn:hover {
+  background-color: #334155;
+}
+body.dark-mode .review-question {
+  background: #1e293b;
+  border-right: 4px solid var(--secondary-color);
+}
+body.dark-mode .review-option {
+  background-color: #0f172a;
+  color: #e2e8f0;
+}
+body.dark-mode .question-card {
+    background-color: var(--card-bg);
+    border-right: 4px solid var(--secondary-color);
+}
+body.dark-mode .quiz-title, 
+body.dark-mode .question-number {
+    color: #60a5fa; /* لون أزرق فاتح للعناوين في الليلي */
 }
 
 body {
@@ -21,16 +62,16 @@ body {
   font-family: 'Almarai', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
-  /* (تعديل) استخدام لون خلفية سادة فاتح بدلاً من التدرج */
   background-color: var(--body-bg);
   min-height: 100vh;
-  color: var(--text-dark); /* (تعديل) لون النص الافتراضي أغمق */
+  color: var(--text-dark);
+  transition: background-color 0.3s ease, color 0.3s ease; /* تنعيم التحويل */
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 25px; /* (تعديل) زيادة الحشو لراحة أكبر */
+  padding: 25px;
 }
 
 /* --- Header --- */
@@ -39,8 +80,27 @@ body {
   margin-bottom: 30px;
   background: var(--card-bg);
   padding: 30px;
-  border-radius: var(--radius-lg); /* (تعديل) */
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow-heavy);
+  position: relative; /* عشان زرار الثيم */
+}
+
+/* (جديد) تنسيق زر تغيير الوضع */
+.theme-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: transparent;
+  border: 2px solid var(--border-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+.theme-btn:hover {
+  transform: scale(1.1);
+  background-color: var(--border-color);
 }
 
 .header h1 {
@@ -58,9 +118,9 @@ body {
 .tab-container {
   display: flex;
   flex-wrap: wrap;
-  background: var(--card-bg); /* (تعديل) خلفية بيضاء */
+  background: var(--card-bg);
   border-radius: var(--radius-lg);
-  padding: 8px; /* (تعديل) حشو داخلي للأزرار */
+  padding: 8px;
   margin-bottom: 30px;
   box-shadow: var(--shadow-light);
 }
@@ -75,20 +135,20 @@ body {
   font-size: 1rem;
   font-weight: bold;
   color: var(--text-light);
-  border-radius: var(--radius-md); /* (تعديل) */
+  border-radius: var(--radius-md);
   transition: all 0.3s ease;
   min-width: 150px;
 }
 
 .tab-btn:hover {
   background: rgba(0, 0, 0, 0.05);
-  color: var(--text-dark); /* (تعديل) */
+  color: var(--text-dark);
 }
 
 .tab-btn.active {
   background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
   color: white;
-  box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3); /* (تعديل) ظل متناسب مع اللون الجديد */
+  box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
 }
 
 /* --- Tab Content (Quiz Selection) --- */
@@ -116,20 +176,40 @@ body {
 /* --- Quiz Card --- */
 .quiz-card {
   background: var(--card-bg);
-  border-radius: var(--radius-lg); /* (تعديل) */
+  border-radius: var(--radius-lg);
   padding: 25px;
   box-shadow: var(--shadow-light);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
-  border: 2px solid transparent; /* (تعديل) */
+  border: 2px solid transparent;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative; /* (جديد) عشان شارة النتيجة */
+}
+
+/* (جديد) شارة النتيجة السابقة */
+.history-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: #22c55e;
+    color: white;
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    animation: popIn 0.3s ease;
+}
+@keyframes popIn {
+    from { transform: scale(0); }
+    to { transform: scale(1); }
 }
 
 .quiz-card:hover {
   transform: translateY(-5px);
-  box-shadow: var(--shadow-heavy); /* (تعديل) */
+  box-shadow: var(--shadow-heavy);
   border-color: var(--primary-color);
 }
 
@@ -162,22 +242,17 @@ body {
 }
 
 .start-btn:hover {
-  transform: scale(1.03); /* (تعديل) تأثير hover أفضل */
+  transform: scale(1.03);
   box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
 }
 
-/* ======================================
-=== (تعديل) بداية التعديلات المطلوبة ===
-======================================
-*/
 
 /* --- Quiz Container --- */
 .quiz-container {
   display: none;
   background: var(--card-bg);
-  border-radius: var(--radius-lg); /* (تعديل) */
+  border-radius: var(--radius-lg);
   padding: 30px;
-  /* (تعديل) إضافة حشو علوي لإفساح المجال للعداد والزر */
   padding-top: 70px;
   box-shadow: var(--shadow-heavy);
   margin-bottom: 30px;
@@ -185,22 +260,17 @@ body {
 }
 .quiz-header {
   text-align: center;
-  /* (تعديل) تقليل الهامش السفلي */
   margin-bottom: 20px;
-  /* (تعديل) إزالة الخط السفلي والحشو */
   padding-bottom: 0;
   border-bottom: none;
 }
 
 .quiz-title {
-  /* (تعديل) تغيير اللون إلى أزرق غامق صريح */
   color: #0d47a1; 
   font-size: 2rem;
   margin-bottom: 5px;
 }
 
-
-/* (جديد) حاوية لعداد الأسئلة والوقت */
 .quiz-header-info {
   display: flex;
   justify-content: space-between;
@@ -215,11 +285,9 @@ body {
     color: var(--text-light);
     font-size: 1rem;
     font-weight: 500;
-    margin: 0; /* (تعديل) إزالة الهامش الافتراضي */
+    margin: 0;
 }
 
-/* (تعديل) تصميم عداد الوقت ليطابق الصورة */
-/* (تعديل) تغيير المحدد من #timer-container إلى #quiz-timer ليطابق الـ HTML */
 #quiz-timer {
   position: absolute;
   top: 25px;
@@ -232,12 +300,11 @@ body {
   font-weight: bold;
 }
 
-/* (تعديل) تصميم شريط التقدم ليطابق الصورة */
 .progress-bar {
-  background: var(--border-color); /* (تعديل) */
-  height: 5px; /* (تعديل) جعله أرفع */
-  border-radius: 3px; /* (تعديل) */
-  margin: 15px 0 0 0; /* (تعديل) وضعه بعد عداد الأسئلة */
+  background: var(--border-color);
+  height: 5px;
+  border-radius: 3px;
+  margin: 15px 0 0 0;
   overflow: hidden;
 }
 
@@ -248,23 +315,19 @@ body {
   transition: width 0.3s ease;
 }
 
-/* --- كارت السؤال (من الثيم الجديد) --- */
+/* --- كارت السؤال --- */
 .question-card {
-  /* (تعديل) خلفية زرقاء فاتحة جداً (زي الصورة) */
-  background: #eff6ff; 
+  background: var(--quiz-card-bg); /* (تعديل) استخدام متغير للون */
   border-radius: var(--radius-md);
   padding: 25px;
   margin-bottom: 20px;
-  /* (تعديل) إضافة الحافة الزرقاء على اليمين */
-  border-right: 4px solid var(--primary-color);
-  /* (تعديل) جعل اتجاه الكارد من اليمين لليسار */
+  border-right: 4px solid var(--quiz-card-border); /* (تعديل) */
   direction: rtl;
   text-align: right;
 }
 
 
 .question-number {
-  /* (تعديل) تغيير اللون إلى أزرق غامق */
   color: #0d47a1; 
   font-weight: bold;
   font-size: 1rem;
@@ -273,21 +336,18 @@ body {
 
 
 .question-text, .answer-btn {
-  /* (تعديل) تم إخراج تنسيقات الاتجاه والخط من هنا لتطبيقها بشكل منفصل */
   font-size: 1.3rem;
   color: var(--text-dark);
   margin-bottom: 25px;
   line-height: 1.6;
 }
 
-/* (تعديل) تطبيق خاص للأسئلة والأجوبة الإنجليزية */
 .question-text, 
 .answer-btn {
   text-align: left;
   direction: ltr;
 }
 
-/* (تعديل) استثناء للأسئلة العربية (مثل اختبار صح وخطأ) */
 .question-text.rtl,
 .answer-btn.rtl {
     text-align: right;
@@ -304,10 +364,10 @@ body {
 }
 
 .answer-btn {
-  background: white;
+  background: var(--card-bg);
   border: 2px solid var(--border-color);
   padding: 15px 20px;
-  border-radius: var(--radius-md); /* (تعديل) */
+  border-radius: var(--radius-md);
   font-size: 1.1rem;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -317,13 +377,18 @@ body {
 
 .answer-btn:hover {
   border-color: var(--primary-color);
-  background-color: #f1f5f9; /* (تعديل) */
+  background-color: #f1f5f9;
 }
 
 .answer-btn.selected {
-  background: #e0e7ff; /* indigo-100 (تعديل) */
+  background: #e0e7ff;
   border-color: var(--secondary-color);
-  color: var(--text-dark);
+  color: #1e293b; /* Keep text dark for readability in selected state */
+}
+/* تعديل للوضع الليلي للاختيار المحدد */
+body.dark-mode .answer-btn.selected {
+    background: #3730a3; /* Indigo dark */
+    color: white;
 }
 
 .tf-options {
@@ -343,7 +408,6 @@ body {
 }
 
 .nav-btn {
-  /* (تعديل) تغيير الخلفية من متدرجة إلى لون أزرق ثابت */
   background: var(--primary-color);
   color: white;
   border: none;
@@ -353,17 +417,16 @@ body {
   cursor: pointer;
   font-weight: bold;
   min-width: 140px;
-  transition: transform 0.2s ease; /* (تعديل) */
+  transition: transform 0.2s ease;
 }
 
 .nav-btn:hover:not(:disabled) {
-    transform: scale(1.03); /* (تعديل) */
+    transform: scale(1.03);
     box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
 }
 
 .nav-btn:disabled {
-  /* (تعديل) تغيير لون الزر غير المفعل إلى الرمادي الداكن (ليطابق زر "السابق") */
-  background: #64748b; /* slate-500 */
+  background: #64748b;
   color: white;
   cursor: not-allowed;
 }
@@ -382,15 +445,14 @@ body {
   margin: 0 auto 20px auto;
   max-width: 200px;
   text-align: center;
-  transition: background-color 0.2s ease; /* (تعديل) */
+  transition: background-color 0.2s ease;
 }
   .hint-container {
   margin-top: 20px;
   text-align: center;
 }
 .hint-btn {
-  background: #f7fafc;
-  /* (تعديل) لون أزرق */
+  background: transparent;
   border: 2px solid var(--primary-color); 
   color: var(--primary-color); 
   padding: 8px 15px;
@@ -400,45 +462,42 @@ body {
   transition: all 0.3s ease;
 }
 .hint-btn:hover {
-  /* (تعديل) لون أزرق */
   background: var(--primary-color); 
   color: white;
 }
 .hint-text {
-  display: none; /* مخفي افتراضياً */
+  display: none;
   margin-top: 10px;
   padding: 15px;
   background: #f7fafc;
   border-right: 5px solid #e2e8f0;
   border-radius: 10px;
-  color: var(--text-dark);
+  color: #1e293b; /* Force dark text in light box for now, or adapt */
   font-style: italic;
 }
-/* عند تفعيل الحاوية، يظهر التلميح */
+/* تعديل التلميح للوضع الليلي */
+body.dark-mode .hint-text {
+    background: #334155;
+    color: #f1f5f9;
+    border-color: #475569;
+}
+
 .hint-container.active .hint-text {
   display: block;
 }
 
-/* (تعديل) تنسيق زر العودة داخل الاختبار ليطابق الصورة */
 .quiz-container .back-btn {
     position: absolute;
-    top: 25px; /* (تعديل) */
-    right: 30px; /* (تعديل) */
+    top: 25px;
+    right: 30px;
     margin: 0;
     max-width: 150px;
-    padding: 8px 16px; /* (تعديل) */
+    padding: 8px 16px;
     font-size: 0.9rem;
-    /* (تعديل) تغيير الخلفية للرمادي الداكن */
-    background: #475569; /* slate-600 */
-    /* (تعديل) جعله حبة دواء (pill shape) */
+    background: #475569;
     border-radius: 25px;
     border: none;
 }
-
-/* ======================================
-=== (تعديل) نهاية التعديلات المطلوبة ===
-======================================
-*/
 
 .back-btn:hover {
   background: var(--text-dark);
@@ -458,7 +517,6 @@ body {
   margin: 20px 0;
 }
 
-/* (جديد) تصميم الوقت النهائي */
 .final-time {
   font-size: 1.5rem;
   color: var(--text-light);
@@ -472,7 +530,7 @@ body {
 .review-container {
   display: none;
   background: var(--card-bg);
-  border-radius: var(--radius-lg); /* (تعديل) */
+  border-radius: var(--radius-lg);
   padding: 30px;
   box-shadow: var(--shadow-heavy);
   margin-bottom: 30px;
@@ -480,18 +538,18 @@ body {
 }
 
 .review-question {
-  background: #f8fafc; /* (تعديل) */
+  background: #f8fafc;
   border-radius: var(--radius-md);
   padding: 25px;
   margin-bottom: 20px;
-  border-right: 4px solid var(--border-color); /* (تعديل) */
+  border-right: 4px solid var(--border-color);
 }
 
 .review-option {
   background: white;
   border: 2px solid var(--border-color);
   padding: 15px 20px;
-  border-radius: var(--radius-md); /* (تعديل) */
+  border-radius: var(--radius-md);
   font-size: 1.1rem;
   font-weight: bold;
   text-align: left;
@@ -503,16 +561,38 @@ body {
 }
 
 .review-option.correct {
-  background: #dcfce7; /* green-100 (تعديل) */
-  border-color: #22c55e; /* green-500 (تعديل) */
+  background: #dcfce7;
+  border-color: #22c55e;
   opacity: 1;
+  color: #14532d; /* Dark green text */
 }
 
 .review-option.user-incorrect {
-  background: #fee2e2; /* red-100 (تعديل) */
-  border-color: #ef4444; /* red-500 (تعديل) */
+  background: #fee2e2;
+  border-color: #ef4444;
   text-decoration: line-through;
   opacity: 1;
+  color: #7f1d1d; /* Dark red text */
+}
+
+/* (جديد) صندوق الشرح في المراجعة */
+.explanation-box {
+  margin-top: 15px;
+  padding: 15px;
+  background-color: #fffbeb; /* Light yellow */
+  border: 1px solid #fcd34d;
+  border-radius: 8px;
+  color: #92400e;
+  font-size: 1rem;
+  text-align: left;
+  direction: ltr;
+}
+
+/* (جديد) دعم الوضع الليلي لصندوق الشرح */
+body.dark-mode .explanation-box {
+  background-color: #422006; /* Dark brown/orange */
+  border-color: #b45309;
+  color: #fcd34d;
 }
 
 /* --- Footer --- */
@@ -521,12 +601,12 @@ body {
   margin-top: 50px;
   padding: 20px;
   background: var(--card-bg);
-  border-radius: var(--radius-lg); /* (تعديل) */
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow-light);
 }
 
 .footer p {
-  color: #4a5568;
+  color: var(--text-light);
   font-size: 1.1rem;
   margin: 0;
   font-weight: bold;
@@ -534,7 +614,7 @@ body {
 
 @media (max-width: 768px) {
   .container {
-      padding: 15px; /* (تعديل) */
+      padding: 15px;
   }
   .tab-container {
     flex-direction: column;
@@ -550,21 +630,20 @@ body {
     margin: 0 auto 20px auto;
   }
   .quiz-header-info {
-      flex-direction: column; /* (تعديل) لترتيب العداد والوقت فوق بعض */
+      flex-direction: column;
       gap: 15px;
   }
-  /* (تعديل) تعديل أماكن الأزرار العلوية في الموبايل */
   .quiz-container {
-      padding-top: 15px; /* إرجاع الحشو العادي */
+      padding-top: 15px;
   }
   .quiz-container .back-btn, #quiz-timer {
-      position: static; /* إلغاء التثبيت */
+      position: static;
       width: 100%;
       max-width: 200px;
       margin: 10px auto;
       text-align: center;
   }
   #quiz-timer {
-      order: -1; /* جعل العداد يظهر أولاً */
+      order: -1;
   }
   }
