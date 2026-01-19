@@ -1,342 +1,315 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Nursing Platform </title>
-  
-  <!-- ربط ملف الـ CSS الخارجي -->
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nursing Complete Quiz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Roboto', 'Cairo', sans-serif; background-color: #f3f4f6; }
+        
+        .inline-input {
+            display: inline-block;
+            border: none;
+            border-bottom: 3px solid #fbbf24;
+            background-color: transparent;
+            color: #b45309;
+            padding: 0 5px;
+            margin: 0 5px; /* مسافة بين الخانات */
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.1em;
+            min-width: 140px;
+            width: auto;
+            outline: none;
+            transition: all 0.3s;
+        }
+        
+        .inline-input:focus {
+            border-bottom-color: #4f46e5;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .sentence-container {
+            line-height: 2.5;
+            font-size: 1.25rem;
+            color: #1f2937;
+        }
+
+        .correct { border-bottom-color: #22c55e !important; color: #15803d !important; background-color: #dcfce7 !important; }
+        .wrong { border-bottom-color: #ef4444 !important; color: #b91c1c !important; background-color: #fee2e2 !important; animation: shake 0.4s; }
+        .close { border-bottom-color: #eab308 !important; color: #854d0e !important; background-color: #fef9c3 !important; }
+
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+    </style>
 </head>
-<body>
+<body class="flex flex-col min-h-screen">
 
-  <div class="container">
-    <div class="header">
-      <!-- (جديد) زرار الوضع الليلي -->
-      <button id="theme-toggle" class="theme-btn" title="تغيير الوضع">🌙</button>
-      
-      <h1 id="site-title">منصة الاختبارات</h1>
-      <p>ان شاء الله هننزل كل الاختبارات هنا وكويزات الدكاترة هتنزل قريبا شوية وقت بس </p>
-      <p>متنسوش تصلوا علي النبي وتدعولنا </p>
-    </div>
+    <header class="bg-indigo-700 text-white p-4 shadow-md sticky top-0 z-50">
+        <div class="container mx-auto max-w-3xl flex justify-between items-center">
+            <h1 class="text-xl font-bold">Nursing Quiz</h1>
+            <div class="bg-indigo-800 px-3 py-1 rounded-lg text-sm font-mono">
+                Score: <span id="current-score">0</span> / <span id="total-questions">23</span>
+            </div>
+        </div>
+    </header>
 
-    <div class="tab-container">
-      <button class="tab-btn active" data-tab="microbiology">Microbiology Bank</button>
-      <button class="tab-btn" data-tab="fundamental">Fundamental Bank</button>
-      <button class="tab-btn" data-tab="biochemistry">Biochemistry Bank</button>
-      <button class="tab-btn" data-tab="anatomy">Anatomy Bank</button>
-      <button class="tab-btn" data-tab="physiology">Physiology Bank</button>
-      <button class="tab-btn" data-tab="clinical">Clinical Bank</button>
-      <button class="tab-btn" data-tab="ethics">Ethics Bank</button>
-    </div>
-    
-    <div id="quiz-selection">
+    <main class="flex-grow flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-3xl rounded-2xl shadow-xl overflow-hidden flex flex-col min-h-[450px]">
+            <div class="w-full bg-gray-200 h-1.5">
+                <div id="progress-bar" class="bg-yellow-400 h-1.5 transition-all duration-500" style="width: 0%"></div>
+            </div>
 
-      <!-- 1. Ethics Tab Content -->
-      <div id="ethics" class="tab-content">
-        <div class="quiz-card" data-bank="ethics" data-quiz="ethics_1">
-          <h3>Ethics in Nursing - Part 1</h3>
-          <p>20 سؤال (المبادئ الأساسية)</p>
-          <button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="ethics" data-quiz="ethics_2">
-          <h3>Ethics in Nursing - Part 2</h3>
-          <p>20 سؤال (حقوق المريض والانتهاكات)</p>
-          <button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="ethics" data-quiz="ethics_3">
-          <h3>Ethics in Nursing - Part 3</h3>
-          <p>20 سؤال (السرية والمساءلة)</p>
-          <button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="ethics" data-quiz="ethics_4">
-          <h3>Ethics in Nursing - Part 4</h3>
-          <p>20 سؤال (العدالة والكفاءة)</p>
-          <button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="ethics" data-quiz="ethics_5">
-          <h3>Ethics in Nursing - Part 5</h3>
-          <p>20 سؤال (المسؤوليات المهنية)</p>
-          <button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="ethics" data-quiz="ethics_6">
-          <h3>Ethics in Nursing - Part 6</h3>
-          <p>20 سؤال (المواقف القانونية والأخلاقية)</p>
-          <button class="start-btn">ابدأ الاختبار</button>
-        </div>
-      </div>
+            <div class="p-8 flex-grow flex flex-col justify-center">
+                <div class="flex justify-between items-center text-gray-500 text-sm font-bold mb-6">
+                    <span id="question-number">Question 1</span>
+                    <span class="bg-gray-100 px-2 py-1 rounded">Fill in the blank(s)</span>
+                </div>
 
-      <!-- 2. Microbiology Tab Content -->
-      <div id="microbiology" class="tab-content active">
-        <div class="quiz-card" data-bank="microbiology" data-quiz="morphology">
-          <h3>Bacterial Morphology</h3>
-          <p>19 سؤال اختيار من متعدد</p><button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="microbiology" data-quiz="physiology">
-          <h3>Bacterial Physiology</h3>
-          <p>20 سؤال اختيار من متعدد</p><button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="microbiology" data-quiz="flora">
-          <h3>Normal Flora</h3>
-          <p>18 سؤال اختيار من متعدد</p><button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="microbiology" data-quiz="sterilization">
-          <h3>Sterilization & Disinfection</h3>
-          <p>20 سؤال اختيار من متعدد</p><button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="microbiology" data-quiz="chemotherapy">
-          <h3>Antimicrobial Chemotherapy</h3>
-          <p>20 سؤال اختيار من متعدد</p><button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="microbiology" data-quiz="general_tf">
-          <h3>Basic Knowledge Test (True/False)</h3>
-          <p>18 سؤال صح وخطأ</p><button class="start-btn">ابدأ الاختبار</button>
-        </div>
-      </div>
+                <div id="sentence-container" class="sentence-container text-center mb-8"></div>
 
-      <!-- 3. Fundamental Tab Content -->
-      <div id="fundamental" class="tab-content">
-        <!-- 1. Body Mechanics -->
-        <div class="quiz-card" data-bank="fundamental" data-quiz="fundamental_mechanics_1">
-          <h3>Body Mechanics - Part 1</h3>
-          <p>20 سؤال (ميكانيكا الجسم والحركة)</p>
-          <button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="fundamental" data-quiz="fundamental_mechanics_2">
-          <h3>Body Mechanics - Part 2</h3>
-          <p>21 سؤال (مضاعفات قلة الحركة)</p>
-          <button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <!-- 2. Infection Control -->
-        <div class="quiz-card" data-bank="fundamental" data-quiz="fundamental_infection_1">
-          <h3>Infection Control - Part 1</h3>
-          <p>20 سؤال (سلسلة العدوى)</p>
-          <button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="fundamental" data-quiz="fundamental_infection_2">
-          <h3>Infection Control - Part 2</h3>
-          <p>20 سؤال (الاحتياطات القياسية والتعقيم)</p>
-          <button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="fundamental" data-quiz="fundamental_infection_3">
-          <h3>Infection Control - Part 3</h3>
-          <p>17 سؤال (أنواع العزل ومنع العدوى)</p>
-          <button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <!-- 3. Prevention & Disparities -->
-        <div class="quiz-card" data-bank="fundamental" data-quiz="fundamental_prevention_1">
-          <h3>Prevention & Disparities - Part 1</h3>
-          <p>20 سؤال (مستويات الوقاية)</p>
-          <button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="fundamental" data-quiz="fundamental_prevention_2">
-          <h3>Prevention & Disparities - Part 2</h3>
-          <p>17 سؤال (الفوارق الصحية والعدالة)</p>
-          <button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <!-- 4. Health Concepts -->
-        <div class="quiz-card" data-bank="fundamental" data-quiz="fundamental_concepts_1">
-          <h3>Health Concepts - Part 1</h3>
-          <p>20 سؤال (مفاهيم الصحة والمرض)</p>
-          <button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="fundamental" data-quiz="fundamental_concepts_2">
-          <h3>Health Concepts - Part 2</h3>
-          <p>18 سؤال (أدوار التمريض ونماذج الصحة)</p>
-          <button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="fundamental" data-quiz="fundamental_concepts_3">
-          <h3>Health Concepts - Part 3</h3>
-          <p>19 سؤال (محددات الصحة والالتزام بالعلاج)</p>
-          <button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="fundamental" data-quiz="fundamental_concepts_4">
-          <h3>Health Concepts - Part 4</h3>
-          <p>21 سؤال (مراجعة شاملة للمفاهيم)</p>
-          <button class="start-btn">ابدأ الاختبار</button>
-        </div>
-      </div>
+                <div id="feedback-message" class="h-16 flex items-center justify-center text-lg font-bold transition-all text-center"></div>
+            </div>
 
-      <!-- 4. Biochemistry Tab Content -->
-      <div id="biochemistry" class="tab-content">
-        <div class="quiz-card" data-bank="biochemistry" data-quiz="biochem_carbs">
-          <h3>Carbohydrate Metabolism</h3>
-          <p>10 أسئلة (أيض الكربوهيدرات)</p>
-          <button class="start-btn">ابدأ الاختبار</button>
+            <div class="bg-gray-50 p-6 border-t border-gray-100 grid grid-cols-2 gap-4">
+                <button onclick="checkAnswer()" id="btn-check" class="bg-indigo-600 hover:bg-indigo-700 text-white py-3 px-6 rounded-xl font-bold shadow-sm transition active:scale-95">Check Answer</button>
+                <button onclick="showAnswer()" id="btn-reveal" class="bg-white border-2 border-gray-200 text-gray-600 hover:bg-gray-50 py-3 px-6 rounded-xl font-bold transition">Show Answer</button>
+                <button onclick="nextQuestion()" id="btn-next" class="hidden col-span-2 bg-yellow-500 hover:bg-yellow-600 text-white py-3 px-6 rounded-xl font-bold shadow-md transition flex items-center justify-center gap-2">Next Question</button>
+            </div>
         </div>
-        <div class="quiz-card" data-bank="biochemistry" data-quiz="biochem_lipids_1">
-          <h3>Lipid Metabolism - Part 1</h3>
-          <p>20 سؤال (أيض الدهون - ج1)</p>
-          <button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="biochemistry" data-quiz="biochem_lipids_2">
-          <h3>Lipid Metabolism - Part 2</h3>
-          <p>7 أسئلة (الدهون والبروتينات الدهنية - ج2)</p>
-          <button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="biochemistry" data-quiz="biochem_proteins">
-          <h3>Protein Metabolism</h3>
-          <p>13 سؤال (أيض البروتين والأحماض الأمينية)</p>
-          <button class="start-btn">ابدأ الاختبار</button>
-        </div>
-      </div>
+    </main>
 
-      <!-- 5. Anatomy Tab Content -->
-      <div id="anatomy" class="tab-content">
-        <div class="quiz-card" data-bank="anatomy" data-quiz="respiratory">
-          <h3>Respiratory System</h3>
-          <p>11 سؤال اختيار من متعدد</p><button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="anatomy" data-quiz="heart">
-          <h3>The Heart</h3>
-          <p>20 سؤال اختيار من متعدد</p><button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="anatomy" data-quiz="general">
-          <h3>General Anatomy</h3>
-          <p>5 أسئلة اختيار من متعدد</p><button class="start-btn">ابدأ الاختبار</button>
-        </div>
-      </div>
+<script>
+    const questions = [
+        { q:"1- __________ state of complete physical, mental and social wellbeing not merely absence of disease.", a:"Health"},
+        { q:"2- Modes of transmission of infection are contact, air, vehicle, and __________.", a:"vector"},
+        { q:"3- __________ pressure. This is the pressure of the blood because of contraction of the ventricles.", a:"Systolic"},
+        { q:"4- __________ are physical, intellectual, mental, social, emotional and spiritual.", a:"Dimensions of Health"},
+        { q:"5- During __________, diaphragm muscles contract, resulting in increased intrathoracic volume as the lungs expand.", a:"inspiration"},
+        { q:"6- __________: the inability to breath in lying position.", a:"Orthopnea"},
+        { q:"7- __________ reflects the balance between the heat produced and the heat lost from the body.", a:"Body temperature"},
+        { q:"8- __________: is the temperature of the skin, the subcutaneous tissue and the fat.", a:"Surface temperature"},
+        { q:"9- __________ is the process that allows the human body to maintain its core internal temperature.", a:"Thermoregulation"},
+        { q:"10- __________: Is the process that destroyed all microorganisms, including spores and viruses.", a:"Sterilizing"},
+        { q:"11- __________: it is difficulty in breathing and mostly it is painful.", a:"Dyspnea"},
+        
+        // --- السؤال ده اتعدل عشان ياخد مصفوفة إجابات (3 خانات) ---
+        { 
+            q: "12- An infection progresses through phases: __________, __________, __________ and convalescence.", 
+            a: ["incubation period", "prodromal period", "full stage of illness"]
+        },
+        
+        { q:"13- Mobility depends on the successful interaction among the __________, the __________, and the __________.", a:["skeleto","muscles","nervous system"]
+            
+        },
+        { q:"14- Type of infection by origin(source) are __________ and __________.", a:["endogenous","exogenous"]
+            
+        },
+        { q:"15- Factors affecting mobility and activity are __________, __________ stage, __________ and environment and __________.", a:["Health status","developmental","nutrition","life style"]
+            
+        },
+        { q:"16- A blood clot that originates at the site of obstruction is __________.", a:"thrombus"},
+        { q:"17- __________ is an imaginary vertical line through the top of the head, the center of gravity, and the base.", a:"Line of gravity"},
+        { q:"18- Mobility Assistive Devices such as canes, __________, and __________.", a:["crutches","walkers"]
+            
+        },
+        { q:"19- Classification of Pain according to physiology are nociceptive, __________ and __________.", a:["neuropathic","phantom"]
+            
+        },
+        { q:"20- Enhancing therapeutic communication through active listening, establishing trust, __________ and  __________.", a:["using silence","being assertive"]
+            
+        },
+        { q:"21- Extrinsic risk factors for pressure ulcers are __________, __________, __________ and chemical irritants.", a:["pressure","friction","moisture"]
+            
+        },
+        { q:"22- Intrinsic risk factors for pressure ulcers are __________, incontinence, __________, __________ and age related skin changes.", a:["immobility","obesity","malnutrition"]
+            
+        },
+        { q:"23- Sites of pressure ulcers include __________, __________, __________, __________ and __________.", a:["back of head","elbow","knee","scapula","shoulders"]
+            
+        }
+    ];
 
-      <!-- 6. Physiology Tab Content -->
-      <div id="physiology" class="tab-content">
-        <div class="quiz-card" data-bank="physiology" data-quiz="physio_cns_1">
-          <h3>CNS - Part 1</h3>
-          <p>20 سؤال (أساسيات الجهاز العصبي)</p>
-          <button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="physiology" data-quiz="physio_cns_2">
-          <h3>CNS - Part 2</h3>
-          <p>20 سؤال (جهد الفعل والتشابك العصبي)</p>
-          <button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="physiology" data-quiz="physio_cns_3">
-          <h3>CNS - Part 3</h3>
-          <p>20 سؤال (خلايا المايلين وسرعة الإشارة)</p>
-          <button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="physiology" data-quiz="physio_cns_4">
-          <h3>CNS - Part 4</h3>
-          <p>18 سؤال (أجزاء الدماغ ووظائفها)</p>
-          <button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="physiology" data-quiz="physio_blood_1">
-          <h3>Blood - Part 1</h3>
-          <p>20 سؤال (مكونات الدم والتجلط)</p>
-          <button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="physiology" data-quiz="physio_blood_2">
-          <h3>Blood - Part 2</h3>
-          <p>20 سؤال (فصائل الدم ومكونات البلازما)</p>
-          <button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="physiology" data-quiz="physio_blood_3">
-          <h3>Blood - Part 3</h3>
-          <p>12 سؤال (خلايا الدم والمناعة)</p>
-          <button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="physiology" data-quiz="physio_cvs_1">
-          <h3>CVS - Part 1</h3>
-          <p>20 سؤال (تشريح القلب ودورة الدم)</p>
-          <button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="physiology" data-quiz="physio_cvs_2">
-          <h3>CVS - Part 2</h3>
-          <p>20 سؤال (صمامات القلب وكهربية القلب)</p>
-          <button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="physiology" data-quiz="physio_cvs_3">
-          <h3>CVS - Part 3</h3>
-          <p>20 سؤال (أصوات القلب والأوعية الدموية)</p>
-          <button class="start-btn">ابدأ الاختبار</button>
-        </div>
-      </div>
-      
-      <!-- 7. Clinical Tab Content -->
-      <div id="clinical" class="tab-content">
-        <div class="quiz-card" data-bank="clinical" data-quiz="clinical_1">
-          <h3>Hand Hygiene & PPE - Part 1</h3>
-          <p>20 سؤال اختيار من متعدد</p><button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="clinical" data-quiz="clinical_2">
-          <h3>Hand Hygiene & PPE - Part 2</h3>
-          <p>20 سؤال اختيار من متعدد</p><button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="clinical" data-quiz="clinical_3">
-          <h3>Hand Hygiene & PPE - Part 3</h3>
-          <p>6 أسئلة اختيار من متعدد</p><button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="clinical" data-quiz="clinical_4">
-          <h3>Patient Positioning - Part 1</h3>
-          <p>20 سؤال اختيار من متعدد</p><button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="clinical" data-quiz="clinical_5">
-          <h3>Patient Positioning - Part 2</h3>
-          <p>20 سؤال اختيار من متعدد</p><button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="clinical" data-quiz="clinical_6">
-          <h3>Patient Positioning - Part 3</h3>
-          <p>6 أسئلة اختيار من متعدد</p><button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="clinical" data-quiz="clinical_7">
-          <h3>Body Mechanics - Part 1</h3>
-          <p>20 سؤال اختيار من متعدد</p><button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="clinical" data-quiz="clinical_8">
-          <h3>Body Mechanics - Part 2</h3>
-          <p>20 سؤال اختيار من متعدد</p><button class="start-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-card" data-bank="clinical" data-quiz="clinical_9">
-          <h3>Body Mechanics - Part 3</h3>
-          <p>4 أسئلة اختيار من متعدد</p><button class="start-btn">ابدأ الاختبار</button>
-        </div>
-      </div>
+    let currentIndex = 0;
+    let score = 0;
+    let state = 'answering'; 
 
-    </div>
+    function init() {
+        document.getElementById('total-questions').innerText = questions.length;
+        loadQuestion();
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                if (state === 'answering') checkAnswer();
+                else if (state === 'feedback') nextQuestion();
+            }
+        });
+    }
 
+    function loadQuestion() {
+        state = 'answering';
+        const qObj = questions[currentIndex];
+        const container = document.getElementById('sentence-container');
+        
+        // استبدال كل "__________" بخانة إدخال منفصلة
+        let htmlContent = qObj.q.replace(/_+/g, (match) => {
+            return `<input type="text" class="inline-input" placeholder="......" autocomplete="off">`;
+        });
+        
+        // حماية إضافية لو النص مكنش فيه underscores بس السؤال محتاج خانة في الآخر
+        if (!htmlContent.includes('<input')) {
+             htmlContent += ` <input type="text" class="inline-input" placeholder="......" autocomplete="off">`;
+        }
 
-    <div id="quiz-container" class="quiz-container">
-      <button class="back-btn go-back">← العودة للقائمة</button>
-      <div class="quiz-header">
-        <h2 id="current-quiz-title" class="quiz-title"></h2>
-        <div class="progress-bar">
-          <div id="progress-fill" class="progress-fill"></div>
-        </div>
-        <p id="question-counter"></p>
-        <div id="quiz-timer">00:00</div>
-      </div>
-      <div id="question-container">
-        </div>
+        container.innerHTML = htmlContent;
 
-      <div class="quiz-navigation">
-        <button id="prev-btn" class="nav-btn" disabled>السابق</button>
-        <button id="next-btn" class="nav-btn">التالي</button>
-      </div>
-    </div>
+        // إعادة ضبط الواجهة
+        document.getElementById('question-number').innerText = `Question ${currentIndex + 1}`;
+        document.getElementById('feedback-message').innerHTML = '';
+        document.getElementById('btn-check').classList.remove('hidden');
+        document.getElementById('btn-reveal').classList.remove('hidden');
+        document.getElementById('btn-next').classList.add('hidden');
+        
+        const progress = ((currentIndex) / questions.length) * 100;
+        document.getElementById('progress-bar').style.width = `${progress}%`;
 
-    <div id="results" class="quiz-container results">
-      <h3>انتهى الاختبار!</h3>
-      <div id="final-score" class="score"></div>
-      <p id="score-message"></p>
-      <button id="review-btn" class="start-btn">مراجعة الإجابات</button>
-      <button class="start-btn go-back">العودة للرئيسية</button>
-    </div>
+        setTimeout(() => {
+            const inputs = document.querySelectorAll('.inline-input');
+            if(inputs.length > 0) inputs[0].focus();
+        }, 100);
+    }
 
-    <div id="review-container" class="review-container">
-      <h2 class="quiz-title">مراجعة الإجابات</h2>
-      <button class="back-btn" id="back-to-results">← العودة للنتائج</button>
-      <div id="review-content">
-        </div>
-      <button class="start-btn go-back">العودة للرئيسية</button>
-    </div>
+    function levenshtein(a, b) {
+        const matrix = [];
+        for (let i = 0; i <= b.length; i++) matrix[i] = [i];
+        for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
+        for (let i = 1; i <= b.length; i++) {
+            for (let j = 1; j <= a.length; j++) {
+                if (b.charAt(i - 1) == a.charAt(j - 1)) {
+                    matrix[i][j] = matrix[i - 1][j - 1];
+                } else {
+                    matrix[i][j] = Math.min(matrix[i - 1][j - 1] + 1, Math.min(matrix[i][j - 1] + 1, matrix[i - 1][j] + 1));
+                }
+            }
+        }
+        return matrix[b.length][a.length];
+    }
 
-    <div class="footer">
-      <p>Created by Zyad & Yusuf</p>
-    </div>
-  </div>
+    function normalize(str) {
+        return str.toLowerCase().replace(/[^a-z0-9]/g, "").trim();
+    }
 
-  <!-- ربط ملف الجافاسكريبت الخارجي -->
-  <script src="script.js"></script>
+    function checkAnswer() {
+        const inputs = document.querySelectorAll('.inline-input');
+        if (inputs.length === 0) return;
+
+        let allCorrect = true;
+        let anyCorrect = false;
+
+        // تحديد الإجابة (ممكن تكون نص واحد أو مصفوفة نصوص)
+        const answerSource = questions[currentIndex].a;
+        const correctAnswers = Array.isArray(answerSource) ? answerSource : [answerSource];
+
+        // التأكد من عدد الخانات مطابق للإجابات (للحماية)
+        // بنعمل لوب على الخانات
+        inputs.forEach((input, idx) => {
+            const userVal = normalize(input.value);
+            // بناخد الإجابة المقابلة لرقم الخانة، لو مفيش بناخد الأخيرة
+            const correctValRaw = correctAnswers[idx] || correctAnswers[0];
+            const correctVal = normalize(correctValRaw);
+
+            if (!userVal) {
+                input.classList.add('wrong');
+                allCorrect = false;
+                return;
+            }
+
+            // فحص التشابه (Fuzzy Logic)
+            const dist = levenshtein(userVal, correctVal);
+            const similarity = 1 - (dist / Math.max(userVal.length, correctVal.length));
+
+            if (similarity > 0.80) { // ممتاز
+                input.classList.add('correct');
+                input.disabled = true;
+                anyCorrect = true;
+            } else if (similarity > 0.60) { // قريب
+                input.classList.add('close');
+                input.disabled = true;
+                allCorrect = false; // مش مثالية بس هنعتبرها غلط عشان التنبيه
+            } else { // غلط
+                input.classList.add('wrong');
+                input.disabled = true;
+                allCorrect = false;
+            }
+        });
+
+        const feedback = document.getElementById('feedback-message');
+        
+        if (allCorrect) {
+            feedback.innerHTML = `<span class="text-green-600 flex items-center gap-2">✅ Excellent!</span>`;
+            score++;
+        } else {
+            // تجميع الإجابات الصحيحة للعرض
+            const correctText = correctAnswers.join(' / ');
+            feedback.innerHTML = `<span class="text-red-600 text-sm">Correct: <b>${correctText}</b></span>`;
+        }
+
+        updateScore();
+        enableNext();
+    }
+
+    function showAnswer() {
+        const inputs = document.querySelectorAll('.inline-input');
+        const answerSource = questions[currentIndex].a;
+        const correctAnswers = Array.isArray(answerSource) ? answerSource : [answerSource];
+
+        inputs.forEach((input, idx) => {
+            input.value = correctAnswers[idx] || correctAnswers[0];
+            input.classList.add('correct');
+            input.disabled = true;
+        });
+
+        enableNext();
+    }
+
+    function enableNext() {
+        state = 'feedback';
+        document.getElementById('btn-check').classList.add('hidden');
+        document.getElementById('btn-reveal').classList.add('hidden');
+        document.getElementById('btn-next').classList.remove('hidden');
+        document.getElementById('btn-next').focus();
+    }
+
+    function updateScore() {
+        document.getElementById('current-score').innerText = score;
+    }
+
+    function nextQuestion() {
+        if (currentIndex < questions.length - 1) {
+            currentIndex++;
+            loadQuestion();
+        } else {
+            document.querySelector('main').innerHTML = `
+                <div class="bg-white p-10 rounded-2xl shadow-xl text-center max-w-lg w-full">
+                    <div class="text-6xl mb-4">🎉</div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">Quiz Finished!</h2>
+                    <p class="text-xl text-gray-600 mb-8">Score: <span class="font-bold text-indigo-600 text-2xl">${score}</span> / ${questions.length}</p>
+                    <button onclick="location.reload()" class="bg-indigo-600 text-white py-3 px-8 rounded-full font-bold shadow-lg hover:bg-indigo-700 transition transform hover:scale-105">
+                        Restart
+                    </button>
+                </div>
+            `;
+            document.getElementById('progress-bar').style.width = '100%';
+        }
+    }
+
+    init();
+</script>
+
+<div class="fixed bottom-6 right-6 bg-white border border-yellow-400 text-indigo-800 px-4 py-2 rounded-full shadow-xl font-bold flex items-center gap-2 animate-bounce z-50">
+    <span>❤️</span> متنساش تصلى علي النبي ♥
+</div>
+
 </body>
 </html>
-
-
+```Made by Zyad ♥
